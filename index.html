@@ -126,6 +126,9 @@
     noBtn.addEventListener('pointerenter', moveNo); noBtn.addEventListener('pointerdown', e=>{ e.preventDefault(); moveNo(); });
 
     yesBtn.addEventListener('click', ()=>{ if(locked) return; clickCount++; let t = document.querySelector('h1');
+      // Telefonda titreşim
+      if(navigator.vibrate){ navigator.vibrate(200); }
+
       if(clickCount === 1){ volumeBoost = 0.4; t.textContent = 'Bir daha bir daha'; t.style.transform = 'scale(1.1)'; setTimeout(()=> t.style.transform='',500); pop(720,0.12, volumeBoost); }
       else if(clickCount === 2){ volumeBoost = 0.7; t.textContent = 'BİR KERE DAHA SÖYLER MİSİN'; t.style.textShadow = '0 0 10px #fff, 0 0 20px #ff79c6'; setTimeout(()=> t.style.textShadow='',1500); pop(820,0.15, volumeBoost); }
       else { volumeBoost = 1.0; celebrate(); playHeartbeat(); burst(); t.textContent = 'Biliyordum! 💗'; speech.classList.add('show'); document.querySelector('.btns').style.display = 'none'; locked = true; }});
